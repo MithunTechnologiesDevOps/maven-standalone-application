@@ -10,7 +10,15 @@
 	<name>maven-stanalone-application</name>
 	<url>http://mithuntechnologies.com</url>
 
+	<organization>
+		<name>Mithun Technologies</name>
+		<url>http://mithuntechnologies.com/</url>
+	</organization>
+	
+	<description>Maven Standalone Application</description>
+
 	<properties>
+		<sonar.host.url>http://localhost:9000/</sonar.host.url>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -24,21 +32,17 @@
 		</dependency>
 
 	</dependencies>
-	
-	<!-- 
-	 Committing and updating changes through Maven, by using below mvn command.
-	 For Commiting
-	 mvn -Dmessage="Updated using maven" scm:checkin 
-	 For updating
-	 mvn scm:update
-	 -->
+
+	<!-- Committing and updating changes through Maven, by using below mvn command. 
+		For Commiting mvn -Dmessage="Updated using maven" scm:checkin For updating 
+		mvn scm:update -->
 	<scm>
 		<connection>scm:git:https://github.com/MithunTechnologiesDevOps/maven-standalone-application</connection>
 		<developerConnection>scm:git:https://github.com/MithunTechnologiesDevOps/maven-standalone-application</developerConnection>
 		<tag>HEAD</tag>
 		<url>https://github.com/MithunTechnologiesDevOps/maven-standalone-application</url>
 	</scm>
-	
+
 	<issueManagement>
 		<system>GitHub</system>
 		<url>https://github.com/MithunTechnologiesDevOps/maven-standalone-application/issues</url>
