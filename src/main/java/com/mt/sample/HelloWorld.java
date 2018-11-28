@@ -14,14 +14,9 @@ public class HelloWorld {
 	}
 
 	private static Date getLocalCurrentDate() {
-		String m = "Mithun";
-
+		String m = "Mithun Technologies";
 		return new Date();
 
-	}
-
-	private static Date getLocalCurrentDate1() {
-		return new Date();
 	}
 
 }
