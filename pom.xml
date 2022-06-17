@@ -34,6 +34,22 @@
 		</dependency>
 
 	</dependencies>
+	
+	<distributionManagement>
+	
+	    <repository>
+	      <id>nexus</id>
+	      <name>Mithun Technologies Releases Nexus Repository</name>
+	      <url>http://3.88.108.105:8081/repository/standalone/</url>
+	    </repository>
+	    
+	    <snapshotRepository>
+	      <id>nexus</id>
+	      <name>Mithun Technologies Snapshot Nexus Repository </name>
+	      <url>http://54.255.174.111:8081/repository/flipkart-snapshot/</url>
+	    </snapshotRepository>
+	    
+	</distributionManagement>
 
 	<!-- Committing and updating changes through Maven, by using below mvn command. 
 		For Commiting mvn -Dmessage="Updated using maven" scm:checkin For updating 
