@@ -3,7 +3,7 @@ pipeline {
 	stages {
 		stage(stage1) {
 			steps {
-				sh 'echo "stage1 running from master branch with webhooks" '
+				sh 'echo "stage1 running from master branch with WEBHOOKS" '
 			}
 		}
 		stage(stage2) {
