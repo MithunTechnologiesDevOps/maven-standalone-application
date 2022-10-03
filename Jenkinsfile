@@ -7,5 +7,6 @@ pipeline {
 		stage(stage2) {
 			sh 'echo "Stage2 running from master branch" '
 	}
-	
+}
+
 }
