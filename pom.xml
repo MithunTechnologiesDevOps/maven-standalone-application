@@ -6,7 +6,6 @@
 	<artifactId>maven-stanalone-application</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	
 
 	<name>maven-stanalone-application</name>
 	<url>http://mithuntechnologies.com</url>
