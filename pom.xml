@@ -3,22 +3,20 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.mt</groupId>
-	<artifactId>maven-stanalone-application</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>maven-standalone-application</artifactId>
+	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>maven-stanalone-application</name>
-	<url>http://mithuntechnologies.com</url>
+	<name>maven-standalone-application</name>
 
 	<organization>
-		<name>Mithun Technologies</name>
-		<url>http://mithuntechnologies.com/</url>
+		<name>NV Technologies</name>
 	</organization>
 	
 	<description>Maven Standalone Application</description>
 
 	<properties>
-		<sonar.host.url>http://35.154.242.68:9000/</sonar.host.url>
+		<sonar.host.url>http://localhost:9000/</sonar.host.url>
 		<sonar.login>admin</sonar.login>
 		<sonar.password>admin</sonar.password>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -36,24 +34,7 @@
 		</dependency>
 
 	</dependencies>
-
-	<!-- Committing and updating changes through Maven, by using below mvn command. 
-		For Commiting mvn -Dmessage="Updated using maven" scm:checkin For updating 
-		mvn scm:update -->
-	<!--
-	<scm>
-		<connection>scm:git:https://github.com/MithunTechnologiesDevOps/maven-standalone-application</connection>
-		<developerConnection>scm:git:https://github.com/MithunTechnologiesDevOps/maven-standalone-application</developerConnection>
-		<tag>HEAD</tag>
-		<url>https://github.com/MithunTechnologiesDevOps/maven-standalone-application</url>
-	</scm>
-
-	<issueManagement>
-		<system>GitHub</system>
-		<url>https://github.com/MithunTechnologiesDevOps/maven-standalone-application/issues</url>
-	</issueManagement>
-
-	-->
+	
 	<build>
 	  <plugins>
 	    <plugin>
