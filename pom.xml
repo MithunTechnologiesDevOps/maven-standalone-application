@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.mt</groupId>
-	<artifactId>maven-stanalone-application</artifactId>
+	<artifactId>maven-standalone-application</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>maven-stanalone-application</name>
+	<name>maven-standalone-application</name>
 	<url>http://mithuntechnologies.com</url>
 
 	<organization>
