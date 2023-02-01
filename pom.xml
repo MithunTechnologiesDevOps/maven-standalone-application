@@ -15,7 +15,7 @@
 		<url>http://mithuntechnologies.com/</url>
 	</organization>
 	
-	<description>Maven Standalone Application</description>
+	<description>Maven-Standalone-application</description>
 
 	<properties>
 		<sonar.host.url>http://35.154.242.68:9000/</sonar.host.url>
