@@ -1,10 +1,7 @@
 pipeline{
     
     agent any
-    #
-   # tools{
-   #     maven 'maven3.8.5'
-   # }
+
 
 stages{
 //Get the code from GitHub
