@@ -8,7 +8,7 @@ stages{
     stage('CheckoutCode'){
 	steps{
 	   
-	git branch: 'master', credentialsId: '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', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
+	git branch: 'master', credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
 	}
 	}
   
