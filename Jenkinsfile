@@ -12,7 +12,11 @@ stages{
 	}
 	}
   
-
+        stage ('unit test'){
+            steps{
+                sh "echo TEST"
+            } //Steps close
+        } // unit test stage close
   
   
   
