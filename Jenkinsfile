@@ -37,7 +37,6 @@ parameters {
             }
         }
         }
-      def branchName = env.BRANCH_NAME
       if (branchName == 'feature') { 
         stage('Unit Test') {
             steps {
