@@ -35,7 +35,7 @@ parameters {
         
 // Feature environment starts:
 
-        stage('Checkout') {
+        stage('feature-Checkout') {
             when {
                 branch 'feature'
             }
@@ -44,7 +44,7 @@ parameters {
             }
         }
 
-        stage('Unit Test') {
+        stage('feature-Unit Test') {
             when {
                 branch 'feature'
             }
@@ -53,7 +53,7 @@ parameters {
             }
         }
 
-        stage('Package') {
+        stage('feature-Package') {
             when {
                 branch 'feature'
             }
