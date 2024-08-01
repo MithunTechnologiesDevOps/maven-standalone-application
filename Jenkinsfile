@@ -6,33 +6,45 @@ parameters {
 }
 
     stages {
+      def branchName = env.BRANCH_NAME
+      if (branchName == 'develop') {    
         stage('Checkout') {
-            when {
-                branch 'develop'
-                branch 'feature'
-            }
             steps {
                 git branch: "${params.branchName}", credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
             }
         }
-
+        }
+      def branchName = env.BRANCH_NAME
+      if (branchName == 'develop') { 
         stage('Unit Test') {
-            when {
-                branch 'develop'
-                branch 'feature'
-            }
             steps {
                 sh "mvn test"
             }
         }
-
+        }
+      def branchName = env.BRANCH_NAME
+      if (branchName == 'develop') { 
         stage('Package') {
-            when {
-                branch 'develop'
-            }
             steps {
                 sh "mvn clean package"
             }
         }
+      } 
+        
+      if (branchName == 'feature') { 
+      stage('Checkout') {
+            steps {
+                git branch: "${params.branchName}", credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
+            }
+        }
+        }
+      def branchName = env.BRANCH_NAME
+      if (branchName == 'feature') { 
+        stage('Unit Test') {
+            steps {
+                sh "mvn test"
+            }
+        } 
+      }
     } // stages closing
 } // pipeline closing
