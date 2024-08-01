@@ -7,13 +7,15 @@ parameters {
 
     stages {
 //      def branchName = env.BRANCH_NAME
-      if (branchName == 'develop') {    
+       
         stage('Checkout') {
-            steps {
-                git branch: "${params.branchName}", credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
-            }
+            if (branchName == 'develop')  {
+                steps {
+                    git branch: "${params.branchName}", credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
+                }
+            }    
         }
-        }
+    
 
       if (branchName == 'develop') { 
         stage('Unit Test') {
@@ -22,13 +24,6 @@ parameters {
             }
         }
         }
-      if (branchName == 'develop') { 
-        stage('Package') {
-            steps {
-                sh "mvn clean package"
-            }
-        }
-      } 
         
       if (branchName == 'feature') { 
       stage('Checkout') {
