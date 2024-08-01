@@ -14,7 +14,7 @@ parameters {
             }
         }
         }
-      def branchName = env.BRANCH_NAME
+
       if (branchName == 'develop') { 
         stage('Unit Test') {
             steps {
@@ -22,7 +22,6 @@ parameters {
             }
         }
         }
-      def branchName = env.BRANCH_NAME
       if (branchName == 'develop') { 
         stage('Package') {
             steps {
