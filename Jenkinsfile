@@ -10,8 +10,10 @@ parameters {
        
         stage('Checkout') {
             when {
-                branch 'develop'
-                branch 'feature'
+                anyof{
+                    branch 'develop'
+                    branch 'feature'
+                }
             }
             steps {
                 git branch: "${params.branchName}", credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
@@ -21,8 +23,10 @@ parameters {
 
         stage('Unit Test') {
             when {
-                branch 'develop'
-                branch 'feature'
+                anyof{
+                    branch 'develop'
+                    branch 'feature'
+                }
             }
             steps {
                 sh "mvn test"
