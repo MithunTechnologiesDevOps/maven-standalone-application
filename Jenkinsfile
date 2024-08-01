@@ -2,7 +2,7 @@ pipeline {
     agent any
 
 parameters {
-  choice choices: ['develop', 'develop-branch-stage-separation', 'feature/*'], description: 'select branch name', name: 'branchName'
+  choice choices: ['develop', 'feature/*'], description: 'select branch name', name: 'branchName'
 }
 
     stages {
