@@ -10,7 +10,7 @@ parameters {
        
         stage('Checkout') {
             when {
-                anyof{
+                anyOf{
                     branch 'develop'
                     branch 'feature'
                 }
@@ -23,7 +23,7 @@ parameters {
 
         stage('Unit Test') {
             when {
-                anyof{
+                anyOf{
                     branch 'develop'
                     branch 'feature'
                 }
