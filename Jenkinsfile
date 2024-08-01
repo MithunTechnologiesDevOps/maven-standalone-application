@@ -9,6 +9,7 @@ parameters {
         stage('Checkout') {
             when {
                 branch 'develop'
+                branch 'feature'
             }
             steps {
                 git branch: "${params.branchName}", credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
@@ -18,6 +19,7 @@ parameters {
         stage('Unit Test') {
             when {
                 branch 'develop'
+                branch 'feature'
             }
             steps {
                 sh "mvn test"
@@ -27,38 +29,6 @@ parameters {
         stage('Package') {
             when {
                 branch 'develop'
-            }
-            steps {
-                sh "mvn clean package"
-            }
-        }
-    } // stages closing    
-    
-        
-// Feature environment starts:
-    stages{
-        
-        stage('feature-Checkout') {
-            when {
-                branch 'feature'
-            }
-            steps {
-                git branch: "${params.branchName}", credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
-            }
-        }
-
-        stage('feature-Unit Test') {
-            when {
-                branch 'feature'
-            }
-            steps {
-                sh "mvn test"
-            }
-        }
-
-        stage('feature-Package') {
-            when {
-                branch 'feature'
             }
             steps {
                 sh "mvn clean package"
