@@ -6,7 +6,7 @@ parameters {
 }
 
     stages {
-      def branchName = env.BRANCH_NAME
+//      def branchName = env.BRANCH_NAME
       if (branchName == 'develop') {    
         stage('Checkout') {
             steps {
