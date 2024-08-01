@@ -32,9 +32,12 @@ parameters {
                 sh "mvn clean package"
             }
         }
+    } // stages closing    
+    
         
 // Feature environment starts:
-
+    stages{
+        
         stage('feature-Checkout') {
             when {
                 branch 'feature'
