@@ -1,33 +1,38 @@
-pipeline{
-    
+pipeline {
     agent any
 
 parameters {
-  choice choices: ['master', 'develop-dynamic-branch-trigger'], description: 'select branch name', name: 'branchName'
-//  string(name: 'BRANCH_NAME', defaultValue: '', description: 'Branch to build')
+  choice choices: ['master', 'develop-branch-stage-separation', 'feature'], description: 'select branch name', name: 'branchName'
 }
 
-stages{
-//Get the code from GitHub
-    stage('CheckoutCode'){
-        steps{
-            script{
-                def BRANCH_NAME = params.branchName
-                if (BRANCH_NAME == 'develop-dynamic-branch-trigger') {
-                    git branch: "${params.branchName}", credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
-                    sh "echo 'The branch name is ${env.BRANCH_NAME}' "
-                } 
-                if (BRANCH_NAME == 'master') {
-                    sh "echo 'The branch name is ${env.BRANCH_NAME}' "
-                }                 
-                // else {
-                //     error "Unsupported branch: ${branchName}"
-                // }
+    stages {
+        stage('Checkout') {
+            when {
+                branch 'develop'
+                branch 'feature'
             }
-            
+            steps {
+                git branch: "${params.branchName}", credentialsId: 'github_creds', url: 'https://github.com/prashanthkvarma/maven-standalone-application.git'
+            }
         }
-	}
-  
-}// Stages Closing
-  
-}// Pipelien CLosing
+
+        stage('Unit Test') {
+            when {
+                branch 'develop'
+                branch 'feature/*'
+            }
+            steps {
+                sh "mvn test"
+            }
+        }
+
+        stage('Package') {
+            when {
+                branch 'develop'
+            }
+            steps {
+                sh "mvn clean package"
+            }
+        }
+    }
+}
