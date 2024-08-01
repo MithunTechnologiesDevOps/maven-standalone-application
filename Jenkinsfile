@@ -30,12 +30,12 @@ parameters {
         }
         
       
-        stage('Unit Test') {
+        stage('Package') {
             when {
                 branch 'develop'
             }
             steps {
-                sh "mvn test"
+                sh "mvn clean package"
             }
         } 
     } // stages closing
