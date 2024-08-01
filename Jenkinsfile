@@ -19,7 +19,7 @@ parameters {
         stage('Unit Test') {
             when {
                 branch 'develop'
-                branch 'feature/*'
+                branch 'feature'
             }
             steps {
                 sh "mvn test"
