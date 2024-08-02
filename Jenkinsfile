@@ -12,7 +12,7 @@ parameters {
             when {
                 anyOf{
                     branch 'develop'
-                    branch 'feature/*'
+                    branch 'feature-*'
                 }
             }
             steps {
@@ -25,7 +25,7 @@ parameters {
             when {
                 anyOf{
                     branch 'develop'
-                    branch 'feature/*'
+                    branch 'feature-*'
                 }
             }
             steps {
