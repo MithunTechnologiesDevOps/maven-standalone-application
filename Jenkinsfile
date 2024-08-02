@@ -2,7 +2,7 @@ pipeline {
     agent any
 
 parameters {
-  choice choices: ['develop', 'feature-*', 'hotfix/*'], description: 'select branch name', name: 'branchName'
+  choice choices: ['develop', 'feature/*', 'hotfix/*'], description: 'select branch name', name: 'branchName'
 }
 
     stages {
@@ -12,7 +12,7 @@ parameters {
             when {
                 anyOf{
                     branch 'develop'
-                    branch 'feature-*'
+                    branch 'feature/*'
                     branch 'hotfix/*'
                 }
             }
@@ -26,7 +26,7 @@ parameters {
             when {
                 anyOf{
                     branch 'develop'
-                    branch 'feature-*'
+                    branch 'feature/*'
                     branch 'hotfix/*'
                 }
             }
