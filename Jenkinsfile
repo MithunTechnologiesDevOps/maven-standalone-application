@@ -2,7 +2,7 @@ pipeline {
     agent any
 
 parameters {
-  choice choices: ['develop', 'feature-*'], description: 'select branch name', name: 'branchName'
+  choice choices: ['develop', 'feature-*', 'hotfix/*'], description: 'select branch name', name: 'branchName'
 }
 
     stages {
@@ -13,6 +13,7 @@ parameters {
                 anyOf{
                     branch 'develop'
                     branch 'feature-*'
+                    branch 'hotfix/*'
                 }
             }
             steps {
@@ -26,6 +27,7 @@ parameters {
                 anyOf{
                     branch 'develop'
                     branch 'feature-*'
+                    branch 'hotfix/*'
                 }
             }
             steps {
