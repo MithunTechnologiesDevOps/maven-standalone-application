@@ -1,0 +1,1 @@
+print("i am from two file")
