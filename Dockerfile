@@ -1,4 +1,11 @@
-FROM amazoncorretto:11-al2023-jdk⁠
+# ---------- Stage 1: Runtime only -------
+FROM eclipse-temurin:21-jre-jammy
+# Set working directory inside the container
 WORKDIR /app
-COPY target/maven-standalone-application*.jar maven-standalone-application.jar 
-CMD ["java","-jar","maven-standalone-application.jar"]
+
+# The JAR will be specified dynamically via build args
+ARG JAR_FILE
+COPY ${JAR_FILE} app.jar
+
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]

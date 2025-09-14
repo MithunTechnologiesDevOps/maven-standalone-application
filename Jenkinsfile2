@@ -1,0 +1,92 @@
+pipeline {
+    agent any
+    tools {
+        maven "MAVEN"
+        jdk "JDK17"
+    }
+    stages {
+        stage("Fetch code from GitHub") {
+            steps {
+                echo "========fetching code from GitHub========"
+                git branch: 'master', url: 'https://github.com/Bashsha12/maven-standalone-application.git'
+            }
+        }
+        stage("Build") {
+            steps {
+                echo "========building the application========"
+
+                sh 'mvn clean install -DskipTests=true'
+                sh 'mvn package'
+                sh 'mvn clean package'
+            }
+            post {
+                success {
+                    echo "========Build was successful========"
+                    echo "========Archiving artifacts========"
+                    archiveArtifacts artifacts: '**/target/*.jar'
+                    echo "========Artifacts archived========"
+                }
+                failure {
+                    echo "========Build failed========"
+                }
+            }
+        }
+        stage("Unit Test") {
+            steps {
+                echo "========Running unit tests========"
+                sh 'mvn test'
+            }
+        }
+        stage("Checkstyle") {
+            steps {
+                echo "========Running checkstyle========"
+                sh 'mvn checkstyle:checkstyle'
+            }
+        }
+        stage("SonarQube") {
+            environment {
+                scannerHome = tool 'sonar7.1'
+            }
+            steps {
+                echo "========Running SonarQube analysis========"
+                withSonarQubeEnv('sonarsever') {
+                    sh '''
+                        ${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=maven-standalone-application \
+                        -Dsonar.projectName=maven-standalone-application \
+                        -Dsonar.projectVersion=1.0 \
+                        -Dsonar.sources=src/ \
+                        -Dsonar.java.binaries=target/classes \
+                        -Dsonar.junit.reportPaths=target/surefire-reports/ \
+                        -Dsonar.jacoco.reportPaths=target/jacoco.exec \
+                        -Dsonar.java.checkstyle.reportPath=target/checkstyle-result.xml \
+                        '''
+                }
+            }
+        }
+        stage("SonarQube Quality Gate") {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+        stage('Upload to Nexus') {
+            steps {
+                echo "========Uploading artifacts to Nexus========"
+                nexusArtifactUploader artifacts: [
+                    [artifactId: 'maven-standalone-application',
+                     classifier: '', 
+                    file: 'target/maven-standalone-application-0.0.1-SNAPSHOT.jar', type: 'jar']
+                ], 
+                credentialsId: 'nexuslogin', 
+                groupId: 'QA', 
+                nexusUrl: '172.31.41.195:8081', 
+                nexusVersion: 'nexus3', 
+                protocol: 'http', 
+                repository: 'maven-standalone-application-repo',
+                version: "${env.BUILD}-${env.BUILD_TIMESTAMP}"
+                echo "========Upload to Nexus completed========"
+            }
+        }
+    }
+}

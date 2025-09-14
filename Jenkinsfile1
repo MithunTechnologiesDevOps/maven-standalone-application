@@ -1,0 +1,44 @@
+pipeline{
+    agent any
+    tools{
+        maven "MAVEN"
+        jdk "JDK17"
+    }
+    stages{
+        stage("Fetch code from GitHub"){
+            steps{
+                echo "========fetching code from GitHub========"
+                git branch: 'master', url: 'https://github.com/Bashsha12/maven-standalone-application.git'
+            }
+            
+        }
+        stage('Unittest'){
+            steps{
+                echo "========Running unit tests========"
+                sh 'mvn clean test'
+            }
+        }
+        stage('Build'){
+            steps{
+                echo "========Building the project========"
+                sh '''
+                mvn install -DskipTests=true
+                '''
+                
+                echo "========Build completed========"
+            }
+            post{
+                success{
+                    echo "========Build was successful========"
+                    echo "========Archiving artifacts========"
+                    archiveArtifacts artifacts: '**/target/*.jar'
+                    echo "========Artifacts archived========"
+                }
+                failure{
+                    echo "========Build failed========"
+                }
+            }
+    
+}
+    }
+}
